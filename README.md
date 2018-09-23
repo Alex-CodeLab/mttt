@@ -1,8 +1,13 @@
-# tt.py
+# t.py
 
-### Super simple timetracking commandline application written in Python
+Super simple timetracking commandline application written in Python
 
-Data is stored in simple (per project) text-files in `~/ttprojects` folder  
+
+
+### install
+
+`pip install t`
+
 
 
 ## commands:
@@ -10,12 +15,12 @@ Data is stored in simple (per project) text-files in `~/ttprojects` folder
 * start
 
 initiate a project / task
-   
-* add 
+
+* add
 
 create a new task in a project
   If no project name is given, it will use the latest (current) project
-  
+
 example:
 
 `tt.py add myproject:"My latest task" `
@@ -28,11 +33,11 @@ example:
 
 * end
 
-end a Task 
+end a Task
 
 example:
   `tt.py end finished`
- 
+
 * projects
 
 list all projects
@@ -49,6 +54,6 @@ Show current project
 
 Edit the project data in a text editor
 
+### plain text
 
-
-
+Data is stored in simple (per project) text-files in `~/ttprojects` folder  

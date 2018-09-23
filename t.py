@@ -1,22 +1,23 @@
-#!/usr/bin/python3.5
+#!/usr/bin/python
 import sys
 import os
 import argparse
 from datetime import datetime
 import subprocess
 
+
 EDITOR = '/bin/nano'
 
 class Tt():
 
-  def __init__(self,*args, **kwargs):        
+  def __init__(self,*args, **kwargs):
     self.ttprojects = str(os.environ['HOME']) + '/ttprojects' 
     if not os.path.exists(self.ttprojects):
-        os.makedirs(self.ttprojects)      
+        os.makedirs(self.ttprojects)
     projectfiles = [os.path.join(self.ttprojects,basename) for basename in os.listdir(self.ttprojects)]
-    if projectfiles:       
+    if projectfiles:
         self.latest = max(projectfiles, key=os.path.getctime).rpartition('/')[-1]
-        
+
     self.action = args[0]['action']
     self.data  = args[0]['data']
 
@@ -28,15 +29,14 @@ class Tt():
     if self.action == "report":
         f = open(os.path.join(self.ttprojects,self.latest))
         for line in f.readlines():
-            sys.stdout.write(line)   
-        exit()    
+            sys.stdout.write(line)
+        exit()
 
-    if self.action == "current":        
+    if self.action == "current":
         print("Current project: " + self.latest)
         f = open(os.path.join(self.ttprojects, self.latest), 'r')
-        if len(f.readlines()) > 0:        
-            print(f.readlines()[-1])    
-            f.close()     
+        try: f.readlines()[-1]
+        except: pass
         exit()
 
     if self.action == "edit":
@@ -48,8 +48,8 @@ class Tt():
     if ':' in self.data:
         self.project = self.data.split(':')[0]
         self.content = self.data.split(':')[1]
-         
-    else:        
+
+    else:
         self.content= self.data
         if hasattr(self,'latest') :
             self.project = self.latest
@@ -57,10 +57,12 @@ class Tt():
             try:
                 project = input("Project name: ({})".format(self.latest))
             except:
-                project = input("New Project name: ")            
-            self.project = project             
+                project = input("New Project name: ")
+            self.project = project
+        if self.action == "start":
+            self.project = self.data
 
-    self.file = open(os.path.join(self.ttprojects, self.project), "a") 
+    self.file = open(os.path.join(self.ttprojects, self.project), "a")
 
     now = datetime.now()
     self.nowstr = "{}:{} {}-{}-{} ".format(now.hour, now.minute, now.day, now.month, now.year) 
@@ -82,7 +84,7 @@ class Tt():
 
 
 if __name__ == '__main__':
-    
+
     parser = argparse.ArgumentParser( formatter_class=argparse.RawTextHelpFormatter,
              description=  'Minimalist command-line time tracking application.')
     parser.add_argument( 'action' , type=str, help = 'options: start, stop, projects, report, current, edit')
@@ -99,7 +101,5 @@ if __name__ == '__main__':
        parser.print_help()
        parser.exit()
 
-    tracker = Tt(vars(args))    
+    tracker = Tt(vars(args))
     tracker.run()
-
-    
