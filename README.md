@@ -1,12 +1,12 @@
-# t.py
+# mttt
 
-Super simple timetracking commandline application written in Python
+Minimalistic timetracking tool
 
 
 
 ### install
 
-`pip install t`
+`pip install mttt`
 
 
 

@@ -4,14 +4,14 @@ with open("README.md", "r") as fh:
     long_description = fh.read()
 
 setuptools.setup(
-    name="t",
-    version="0.0.1",
+    name="mttt",
+    version="0.0.2",
     author="alex",
     author_email="a@b.com",
-    description="Minimalist timetracker",
+    description="Minimalist timetracking tool",
     long_description=long_description,
     long_description_content_type="text/markdown",
-    url="https://github.com/FeedTheWeb/t",
+    url="https://github.com/FeedTheWeb/mttt",
     packages=setuptools.find_packages(),
     classifiers=[
         "Programming Language :: Python :: 2.7",
