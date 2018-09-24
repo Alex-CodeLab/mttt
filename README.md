@@ -6,8 +6,11 @@ Minimalistic timetracking tool
 
 ### install
 
-`pip install mttt`
+`pip install --user mttt`
 
+`chmod +x ~/.local/lib/python2.7/site-packages/mttt/t.py`
+
+`echo "alias mttt='~/.local/lib/python2.7/site-packages/mttt/t.py'" >> .bashrc`
 
 
 ## commands:
@@ -23,11 +26,11 @@ create a new task in a project
 
 example:
 
-`tt.py add myproject:"My latest task" `
+`mttt add myproject:"My latest task" `
 
 example:
 
-`tt.py add secondtask `
+`mttt add secondtask `
 
 
 
@@ -36,7 +39,8 @@ example:
 end a Task
 
 example:
-  `tt.py end finished`
+
+`mttt end finished`
 
 * projects
 
